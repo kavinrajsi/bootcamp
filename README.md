@@ -1,3 +1,3 @@
 # Bootcamp
 
-This repo. contains what I am learning from Guvi bootcamp from scratch
+This repo. contains what I am learning in Guvi bootcamp from scratch
