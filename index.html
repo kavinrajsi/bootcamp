@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,14 +9,25 @@
       body {
         padding: 0;
         margin: 0;
+        background-color: #000;
       }
+
+      a,
+      a:hover,
+      a:focus {
+        border: 0;
+        text-decoration: none;
+      }
+
       #root {
-        max-width: 1200px;
+        max-width: 600px;
+        height: 100vh;
         margin: 0 auto;
-        display: grid;
-        gap: 30px;
-        grid-template-columns: repeat(4, 1fr);
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
+
       .card {
         cursor: pointer;
         transition: all 550ms ease-out;
@@ -26,62 +38,47 @@
         box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.1);
         transition: all 250ms ease-out 0ms;
       }
-      ul{
+
+      ul {
         padding: 0;
         margin: 0;
         list-style: none;
       }
-      ul li{
+
+      ul li {
         padding-bottom: 7px;
         margin-bottom: 7px;
         border-bottom: 1px solid #ccc;
       }
-      ul li:last-child{
-        border-bottom: 0;
-        margin-bottom: 0;
-        padding-bottom: 0;
-      }
-      ul li ul{
-        margin-top: 15px;
-        padding-left: 20px;
-      }
-      ul li ul li{
-        border: 0;
+
+      small {
+        margin-top: 20px;
+        text-align: center;
+        display: block;
       }
     </style>
   </head>
+
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="card">
+        <ul>
+          <li>
+            <a target="_blank"  href="./country.html">list of country by using https://restcountries.eu/
+            </a>
+          </li>
+          <li>
+            <a target="_blank"  href="./openweather.html">weather search by using https://openweathermap.org/
+            </a>
+          </li>
+        </ul>
+        <small>
+          <a href="https://github.com/kavinrajsi/bootcamp">
+            source code at github
+          </a></small>
+      </div>
+    </div>
   </body>
   <script src="./index.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.min.js"></script>
 
-  <script>
-    let request = new XMLHttpRequest();
-    request.open('GET', 'https://restcountries.eu/rest/v2/all', false);
-    request.send();
-
-    if (request.readyState === 4 && request.status === 200) {
-      data = JSON.parse(request.response);
-      let output;
-      data.forEach((flog) => {
-        output = `<ul class="card">
-          <li><img src="${flog.flag}" width="24" /> </li>
-          <li><strong> Name </strong>: ${flog.name} </li>
-          <li><strong> Capital </strong>: ${flog.capital}</li>
-          <li><strong> Currencies </strong><ul>`;
-          flog.currencies.forEach((as) => {
-            console.table(as);
-            if(as.name === null){
-            }else{
-              output += `<li> ${as.name} - ${as.symbol} </li>`;
-            }
-          });
-        output += `</ul></li></ul>`;
-        // console.log(output);
-        document.getElementById('root').innerHTML += output;
-      });
-    }
-  </script>
 </html>

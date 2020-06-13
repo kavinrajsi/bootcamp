@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,body,div,h1, ul, li, span{
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+
+
+      body {
+        line-height: 1;
+      }
+
+      ol,
+      ul {
+        list-style: none;
+      }
+
+      input:focus,
+      input:hover,
+      input {
+        outline: 0;
+        border: 0;
+      }
+
+      body {
+        padding: 50px;
+        margin: 0 auto;
+        max-width: 600px;
+        background-color: #6e3f98;
+      }
+
+      .result {
+        opacity: 0;
+        transform: translateY(-30px);
+        will-change: transform, opacity;
+        transition: all ease-in 0.25s;
+      }
+
+      .icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 14px;
+        vertical-align: sub;
+      }
+
+      input {
+        padding: 0 15px;
+        margin: 0;
+        height: 42px;
+        width: 100%;
+        border-radius: 6px;
+        background-color: #fff;
+        margin-bottom: 16px;
+      }
+
+      .card {
+        display: flex;
+        align-items: center;
+        border-radius: 6px;
+        margin-bottom: 16px;
+        box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+        padding: 16px;
+      }
+
+      .area span {
+        display: inline-block;
+      }
+
+      .left,
+      .right {
+        width: 50%;
+      }
+
+      h1,
+      .location--time {
+        margin-bottom: 20px;
+      }
+
+      ul {
+        width: 100%;
+      }
+
+      ul li {
+        border-bottom: 1px solid #dedede;
+        padding: 10px 0;
+        width: 100%;
+        display: block;
+      }
+
+      ul li:last-child {
+        border-bottom: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root">
+      <input type="search" id="search" autocomplete="off" class="form-controller" placeholder="Search for a city..." />
+
+      <div class="result">
+        <div class="card">
+          <div class="left">
+            <h1>
+              Weather today in
+              <span class="area">
+                <span class="location">,</span>
+                <span class="location--name"></span>
+              </span>
+            </h1>
+
+            <div class="location--time">as of <span class="time"></span></div>
+
+            <div class="location--temp">
+              <div class="temp-normal"></div>°C
+              <div class="temp-desc"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="map"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="">
+            <svg class="icon" name="sunrise-line" aria-hidden="true" viewBox="0 0 24 24">
+              <path
+                d="M10.862 6.052v5.329a.75.75 0 0 0 1.5 0V6.036l1.772 1.534a.75.75 0 0 0 .982-1.134l-3.003-2.601a.75.75 0 0 0-.982 0L8.128 6.436A.75.75 0 0 0 9.11 7.57l1.752-1.518zM21 19.128a.75.75 0 0 0 0-1.5H3.167a.75.75 0 1 0 0 1.5H21z">
+              </path>
+            </svg> sun rise
+            <span class="sun-rise"> </span>
+          </div>
+          <div class="">
+            <svg class="icon" name="sunset-line" aria-hidden="true" viewBox="0 0 24 24">
+              <path
+                d="M10.862 9.853L9.044 8.278a.75.75 0 1 0-.982 1.134l3.003 2.602a.75.75 0 0 0 .982 0l3.004-2.602a.75.75 0 0 0-.983-1.134l-1.706 1.478V4a.75.75 0 0 0-1.5 0v5.853zM21 19.075a.75.75 0 1 0 0-1.5H3.167a.75.75 0 1 0 0 1.5H21z">
+              </path>
+            </svg> sun set
+            <span class="sun-set"> </span>
+          </div>
+        </div>
+        <div class="card">
+          <ul>
+            <li>
+              <span><svg class="icon" name="temp" aria-hidden="true" viewBox="0 0 24 24">
+                  <path
+                    d="M10.333 15.48v.321c.971.357 1.667 1.322 1.667 2.456 0 1.438-1.12 2.604-2.5 2.604S7 19.695 7 18.257c0-1.134.696-2.099 1.667-2.456v-.322a2.084 2.084 0 0 1-1.25-1.91V5.583a2.083 2.083 0 1 1 4.166 0v7.986c0 .855-.514 1.589-1.25 1.91zM15.8 8.1a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6zm0-1.85a1 1 0 1 0 0-2 1 1 0 0 0 0 2z">
+                  </path>
+                </svg>High/Low (°C)</span>
+              <span>
+                <span class="high"></span> /
+                <span class="low"></span>
+              </span>
+            </li>
+            <li>
+              <span><svg class="icon" name="humidity" aria-hidden="true" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd"
+                    d="M11.743 17.912a4.182 4.182 0 0 1-2.928-1.182 3.972 3.972 0 0 1-.614-4.962.743.743 0 0 1 .646-.349c.234 0 .476.095.66.275l4.467 4.355c.385.376.39.998-.076 1.275a4.216 4.216 0 0 1-2.155.588M11.855 4c.316 0 .61.14.828.395.171.2.36.416.562.647 1.857 2.126 4.965 5.684 4.965 8.73 0 3.416-2.85 6.195-6.353 6.195-3.505 0-6.357-2.78-6.357-6.195 0-3.082 2.921-6.406 4.854-8.605.242-.275.47-.535.673-.772A1.08 1.08 0 0 1 11.855 4">
+                  </path>
+                </svg>Humidity</span>
+              <span class="humidity"></span>
+            </li>
+            <li>
+              <span><svg class="icon" name="pressure" aria-hidden="true" viewBox="0 0 24 24">
+                  <path
+                    d="M8.462 18.293l-.29-.002c-.6-.004-1.043-.007-1.259-.007-1.119 0-1.182-1.015-.34-1.734l.196-.164.508-.425 1.543-1.292c1.014-.846 1.74-1.45 2.073-1.723.735-.601 1.305-.596 2.033.022.387.329.959.805 2.207 1.841a377.936 377.936 0 0 1 2.18 1.816c.796.67.742 1.66-.295 1.66h-2.382v1.77c0 .83-.393 1.223-1.258 1.223h-2.994c-.809 0-1.258-.42-1.258-1.207v-1.773l-.664-.005zm0-12.807l-.29.002c-.6.004-1.043.006-1.259.006-1.119 0-1.182 1.016-.34 1.734l.196.164.508.426 1.543 1.29a348.68 348.68 0 0 0 2.073 1.724c.735.601 1.305.596 2.033-.022.387-.328.959-.805 2.207-1.84a377.937 377.937 0 0 0 2.18-1.817c.796-.67.742-1.659-.295-1.659h-2.382v-1.77c0-.832-.393-1.224-1.258-1.224h-2.994c-.809 0-1.258.42-1.258 1.207V5.48l-.664.005z">
+                  </path>
+                </svg>Pressure</span>
+              <span class="pressure"></span>
+            </li>
+            <li>
+              <span><svg class="icon" name="visibility" width="1024" height="1024" viewBox="0 0 1024 1024">
+                  <path
+                    d="M491.856 879.808c-60.48-5.056-110.848-25.184-171.328-55.424-120.96-55.424-216.704-146.112-292.256-256.96-25.248-40.352-30.24-80.64 0-126.016 80.608-115.872 186.464-211.68 317.472-272.096 110.816-50.4 226.752-50.4 337.664 0 136 60.48 241.824 156.224 317.44 282.208 15.104 25.216 25.12 65.504 10.048 85.728-105.792 191.424-256.992 367.84-519.04 342.56zm292.256-377.92c0-151.168-120.96-272.064-272.096-272.064-146.144 0-272.128 126.016-272.128 272.064 0 151.232 120.96 277.216 272.128 277.216 151.104-.032 272.096-125.984 272.096-277.216z">
+                  </path>
+                  <path
+                    d="M789.808 500.416c0 156.896-125.472 287.52-282.336 282.336-156.864 0-282.336-130.656-282.336-287.488 0-146.4 130.656-277.12 282.336-277.12 156.896-.032 287.584 125.376 282.336 282.272zM512.752 348.832c-83.68 0-151.584 67.968-151.584 151.584 0 88.864 67.968 156.896 151.584 156.896 83.648 0 156.832-73.216 156.832-156.896-5.184-83.648-73.152-151.584-156.832-151.584z">
+                  </path>
+                </svg>Visibility</span>
+              <span class="visibility"></span>
+            </li>
+            <li>
+              <span><svg class="icon" name="wind" aria-hidden="true" viewBox="0 0 24 24">
+                  <path
+                    d="M6 8.67h5.354c1.457 0 2.234-1.158 2.234-2.222S12.687 4.4 11.354 4.4c-.564 0-1.023.208-1.366.488M3 11.67h15.54c1.457 0 2.235-1.158 2.235-2.222S19.873 7.4 18.54 7.4c-.747 0-1.311.365-1.663.78M6 15.4h9.389c1.457 0 2.234 1.159 2.234 2.223 0 1.064-.901 2.048-2.234 2.048a2.153 2.153 0 0 1-1.63-.742"
+                    stroke-width="2" stroke="currentColor" stroke-linecap="round" fill="none"></path>
+                </svg>Wind</span>
+              <span class="wind"></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    const api = {
+      key: 'cc1f855b176b55f9bb80b232e38ecdf3',
+      url: '//api.openweathermap.org/data/2.5',
+    };
+    let searchbox = document.getElementById('search'),
+      request = new XMLHttpRequest();
+    searchbox.addEventListener('keypress', setQuery);
+
+    function setQuery(evt) {
+      // only pass the result if user press enter
+      if (evt.keyCode == 13) {
+        getResults(searchbox.value);
+      }
+    }
+    /* data render */
+    function getResults(query) {
+      fetch(`${api.url}/weather?q=${query}&appid=${api.key}`)
+        .then(function (response) {
+          let data = response.json();
+          return data;
+        })
+        .then(function (data) {
+          data => console.log(data)
+          display(data);
+        }).catch(
+          reason => document.querySelector('.result').innerHTML = (reason.message)
+        )
+    }
+
+    function display(data) {
+      document.querySelector('.result').style.opacity = '1';
+      document.querySelector('.result').style.transform = 'translateY(0)';
+
+      let location = document.querySelector('.location'),
+        locationName = document.querySelector('.location--name'),
+        feel = document.querySelector('.feel-like'),
+        sunrice = document.querySelector('.sun-rise'),
+        sunset = document.querySelector('.sun-set'),
+        temp = document.querySelector('.temp-normal'),
+        desc = document.querySelector('.temp-desc'),
+        map = document.querySelector('.map'),
+        time = document.querySelector('.time'),
+        today = new Date(),
+        wind = document.querySelector('.wind'),
+        visibility = document.querySelector('.visibility'),
+        pressure = document.querySelector('.pressure'),
+        humidity = document.querySelector('.humidity'),
+        high = document.querySelector('.high'),
+        low = document.querySelector('.low');
+
+      location.innerText = data.name;
+      locationName.innerText = data.sys.country;
+      sunrice.innerText = data.sys.sunrise;
+      sunset.innerText = data.sys.sunset;
+      desc.innerText = data.weather[0].description;
+      temp.innerText = `${Math.round(data.main.temp-273.15)}`;
+      time.innerText = today.toDateString();
+      wind.innerText = `${data.wind.speed}`;
+      visibility.innerText = data.visibility;
+      pressure.innerText = data.main.pressure;
+      humidity.innerText = data.main.humidity;
+
+      high.innerText = `${Math.round(data.main.temp_max-273.15)}`;
+      low.innerText = `${Math.round(data.main.temp_min-273.15)}`;
+
+      map.innerHTML = `
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15653.674641283897!2d${data.coord.lon}!3d${data.coord.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1592028056632!5m2!1sen!2sin"   frameborder="0" style="border:0;" allowfullscreen="false" aria-hidden="false" tabindex="0"></iframe>
+
+      `;
+    }
+  </script>
+
+</html>
