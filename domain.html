@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Domains DB</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0 auto;
+        max-width: 600px;
+      }
+      .note{
+        font-size: 14px;
+        line-height: 1.5;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .form-controller{
+        width: 100%;
+        display: block;
+        padding: 14px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        margin: 14px auto;
+      }
+      ul {
+        max-width: 600px;
+        text-align: left;
+        list-style: none;
+        padding: 0;
+        margin: 20px auto;
+        background-color: #ddd;
+      }
+      ul li {
+        display: block;
+        margin-bottom: 7px;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        transition: all ease-in 0.2s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="note">
+      Search result are shown from https://domainsdb.info/ <hr>
+      Search results are limited to 50 results. You can have up to 100 results via API (link in footer) and full list by custom request.
+    </div>
+    <input
+      type="search"
+      id="search"
+      autocomplete="off"
+      class="form-controller"
+      placeholder="Search for a domain..."
+    />
+    <ul id="root"></ul>
+  </body>
+
+  <script>
+    let searchbox = document.getElementById('search'),
+      request = new XMLHttpRequest();
+    searchbox.addEventListener('keypress', setQuery);
+
+    function setQuery(evt) {
+      // only pass the result if user press enter
+      if (evt.keyCode == 13) {
+        getResults(searchbox.value);
+      }
+    }
+
+    /* data render */
+    function getResults(query) {
+      console.log(query);
+      const url = `https://api.domainsdb.info/v1/domains/search?domain=${query}&zone=com`,
+        proxy = 'https://cors-anywhere.herokuapp.com/';
+
+      fetch(proxy + url)
+        .then((response) => response.json())
+
+        .then((data) => {
+          let items = [];
+          for (let i = 0; i < data.domains.length; i++) {
+            console.log(data.domains[i].domain);
+            let div = document.getElementById('root');
+            div.innerHTML += `<li> ${data.domains[i].domain} </li>`;
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+          return e;
+        });
+    }
+  </script>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Please look on the console.log</p>
+    <script>
+      /**
+       * 1 .Print odd numbers in an array
+       */
+
+      function oddNumber(array) {
+        console.log('1. Odd Number');
+        let arr = [];
+        for (let i = 0; i < array.length; i++) {
+          if (array[i] % 2 === 0) {
+            arr.push(array[i]);
+          }
+        }
+        console.log(`Ans: ${arr}`);
+        return true;
+      }
+      oddNumber([50, 88, 99, 75, 2, 0, 4]);
+
+      /**
+       * 2. Convert all the strings to title caps in a string array
+       */
+
+      function titleCase(str) {
+        console.log(
+          '2. Convert all the strings to title caps in a string array '
+        );
+        str = str.toLowerCase().split(' ');
+        for (let i = 0; i < str.length; i++) {
+          str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+        }
+        console.log(`Ans: ${str.join(' ')}`);
+        return true;
+      }
+      titleCase("I'm a little tea pot");
+
+      /**
+       * Sum of all numbers in an array
+       */
+
+      function array(array) {
+        let total = 0;
+        console.log('3. Sum of all numbers in an array');
+        for (let i = 0; i < array.length; i++) {
+          total += array[i];
+        }
+        console.log(`Ans: ${total}`);
+        return true;
+      }
+      array([5, 7, 9]);
+
+      /**
+       * Return all the prime numbers in an array
+       */
+      function sort_prime(num) {
+        console.log('4. Return all the prime numbers in an array  ');
+        const prime_num1 = [];
+        const prime_num2 = [];
+        for (var i = 0; i <= num; i++) {
+          prime_num2.push(true);
+        }
+        for (var i = 2; i <= num; i++) {
+          if (prime_num2[i]) {
+            prime_num1.push(i);
+            for (let j = 1; i * j <= num; j++) {
+              prime_num2[i * j] = false;
+            }
+          }
+        }
+        console.log(`Ans: ${prime_num1}`);
+        return true;
+      }
+
+      console.log(sort_prime(5));
+
+      /*
+Return all the palindromes in an array
+*/
+
+      /*
+Return median of two sorted arrays of same size
+*/
+
+      /*
+Remove duplicates from an array
+*/
+
+      let peoplenames = new Array(
+        'Mike',
+        'Matt',
+        'Matt',
+        'Adam',
+        'Jenny',
+        'Nancy',
+        'Carl'
+      );
+
+      function unique(array) {
+        console.log('7. Remove duplicates from an array');
+        let len = array.length;
+        for (let i = 0; i < len; i++) {
+          for (let j = i + 1; j < len; j++) {
+            if (array[j] == array[i]) {
+              array.splice(j, 1);
+              j--;
+              len--;
+            }
+          }
+        }
+        console.log(`Ans: ${peoplenames} `);
+        return true;
+      }
+      peoplenames = unique(peoplenames);
+
+      /*
+Rotate an array by k times and return the rotated array
+*/
+      function rotateLeft(arr, rotations) {
+        console.log(
+          '8. Rotate an array by k times and return the rotated array'
+        );
+        let len = arr.length;
+        for (let i = 0; i < rotations; i++) {
+          let temp = arr[0];
+          for (let i = 0; i < len; i++) {
+            arr[i] = arr[i + 1];
+          }
+          arr[len - 1] = temp;
+        }
+        return arr;
+      }
+
+      let arr = [1, 2, 3, 4, 5];
+
+      let rotations = 2;
+      let output = rotateLeft(arr, rotations);
+      console.log(`Ans: ${output} `);
+    </script>
+  </body>
+</html>
