@@ -25,18 +25,40 @@
         border: 0;
         text-decoration: none;
       }
-
-
+      form{
+        padding: 5px;
+        border: 1px solid #fff;
+        border-radius: 2px;
+      }
+      form input{
+        padding: 6px 8px;
+      }
+      .result{
+        display: block;
+        padding: 5px;
+        border: 1px dotted #ccc;
+      }
     </style>
   </head>
 
   <body>
-  <p> Please look on the console for the outcome
-    <small>
-      <a href="https://github.com/kavinrajsi/bootcamp">
-        source code at github
-      </a></small></p>
+    <p> Please look on the console for the outcome
+      <small>
+        <a href="https://github.com/kavinrajsi/bootcamp">
+          source code at github
+        </a></small></p>
+    <form name="form">
+      <input placeholder="First Number" type="number" name="firstNumber" id="firstNumber"><br>
+      <input placeholder="Second Number" type="number" name="secondNumber" id="secondNumber" ><br>
+      <input type="button" name="" value="add" onclick="addition()">
+      <input type="button" name="" value="sub" onclick="subtraction()">
+      <input type="button" name="" value="mul" onclick="multiplication()">
+      <input type="button" name="" value="div" onclick="division()">
+      <p class="result">Output: <span id="result"></span></p>
+    </form>
   </body>
   <script src="./index.js"></script>
   <script src="./ipl.js"></script>
+  <script src="./calculator.js"></script>
+
 </html>
